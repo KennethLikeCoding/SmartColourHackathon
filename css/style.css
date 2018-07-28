@@ -1,3 +1,24 @@
 .swatches p {
 	text-align: center;
 }
+
+#nearest-color {
+	width: 5.5em;
+	height: 3em;
+	margin-bottom: 2em;
+}
+
+#nearest a {
+	cursor: pointer;
+	color: black;
+}
+
+#nearest a:hover {
+	color: blue;
+	text-decoration: none;
+}
+
+#color-container {
+	display: flex;
+	justify-content: center;
+}

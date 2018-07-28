@@ -41,16 +41,20 @@
     </div>
     {{/images}}
   </script>
+  
   <script id="color-thief-output-template" type="text/x-mustache">
+    
     <div class="function get-color">
-      <h3 class="function-title">Dominant Color {{color.0}}, {{color.1}}, {{color.2}}</h3>
+	  <h3 class="function-title" id="first-title" red={{color.0}} green={{color.1}} blue={{color.2}}>Dominant Color {{color.0}}, {{color.1}}, {{color.2}}</h3>
       <div class="swatches">
         <div class="swatch" style="background-color: rgb({{color.0}}, {{color.1}}, {{color.2}})"></div>
       </div>
-      <div class="function-code">
-        <code>colorThief.getColor(image):{{elapsedTimeForGetColor}}ms</code>
-      </div>
     </div>
+	
+	<div id="nearest">
+		<h3 class="function-title"><a title="click me to see the nearest color">Nearest Color </a></h3>
+		<div id="color-container"><div id="nearest-color"></div></div>
+	</div>
 	
     <div class="function get-palette">
       <h3 class="function-title">Palette</h3>
@@ -63,21 +67,17 @@
 		  
         </div>
       </div>
-      <div class="function-code">
-        <code>colorThief.getPalette(image):{{elapsedTimeForGetPalette}}ms</code>
-      </div>
     </div>
-	
-	
+
   </script>
 
   <script src="js/color-thief.js"></script>
   <script src="js/jquery.js"></script>
   <script src="js/mustache.js"></script>
   <script src="js/demo.js"></script>
-
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
+  
+  <script>
+  var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-2196019-1']);
     _gaq.push(['_trackPageview']);
 
@@ -86,6 +86,61 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
+	
+ function httpGet(theUrl) {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open( "GET", theUrl, false); // false for synchronous request
+		xmlHttp.send(null);
+		return xmlHttp.responseText;
+	}
+	
+	function componentToHex(c) {
+	var hexNum = parseInt(c);
+		var hex = hexNum.toString(16);
+		return hex.length == 1 ? "0" + hex : hex;
+	}
+
+	function rgbToHex(r, g, b) {
+		return componentToHex(r) + componentToHex(g) + componentToHex(b);
+	}
+	
+	function getNearestColor(r, g, b) {
+		var hexCode = rgbToHex(r, g, b);
+		return JSON.parse(httpGet("http://localhost:6789/nearestColor/"+hexCode));
+	}	
+	
+	var timer = setInterval(check, 100);
+	
+	function check() {
+		if ($('#first-title').attr('red') != null) {
+			clearInterval(timer);
+			displayNearestColor();
+		}
+	}
+	
+	function displayNearestColor() {
+	
+		var red = $('#first-title').attr('red');
+		var green = $('#first-title').attr('green');
+		var blue = $('#first-title').attr('blue');
+		var nearest = "#" + getNearestColor(red, green, blue);
+		$("#nearest h3").append(nearest);
+		$("#nearest-color").css('background', nearest);
+	}
+	
+	var clicked = false;
+	$("body").on('click', '#nearest h3', function(event) {
+		if (clicked == false) {
+			clicked = true;
+			var red = $('#first-title').attr('red');
+			var green = $('#first-title').attr('green');
+			var blue = $('#first-title').attr('blue');
+			var nearest = "#" + getNearestColor(red, green, blue);
+			$("#nearest h3").append(nearest);
+			$("#nearest-color").css('background', nearest);
+		}
+	});
+	
   </script>
 
 </body>
