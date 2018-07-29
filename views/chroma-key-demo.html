@@ -4,46 +4,47 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title> chroma key </title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/chroma-key.css">
 </head>
 	
 <body>
-	<form>
-		red:<br>
-		<input id="red" type="number" name="red" required/><br>
-		green:<br>
-		<input id="green" type="number" name="green" required/><br>
-		blue:<br>
-		<input id="blue" type="number" name="blue" required/><br>
-		range:<br>
-		0 <input id="range" type="range" min="0" max="100" value="45"> 100<br>
-		<input type="submit" value="Submit">
-	</form>
-	
+	<div class="container">
+		<form>
+			<div class="row">
+				<div  class="col-lg-2 slider">
+					<label>Red(0 ~ 255): <span class="rgbVal">0</span></label>
+					<input id="red" class="form-control-range" type="range" min="0" max="255" value="45">
+				</div>
+				<div class="col-lg-2 slider">
+					<label>Green(0 ~ 255): <span class="rgbVal">0</span></label>
+					<input id="green" class="form-control-range" type="range" min="0" max="255" value="45">
+				</div>
+				<div class="col-lg-2 slider">
+					<label>Blue(0 ~ 255): <span class="rgbVal">0</span></label>
+					<input id="blue" class="form-control-range" type="range" min="0" max="255" value="45">
+				</div>
+				<div class="col-lg-2" id="sample">
+					Sample<br>
+					<div></div>
+				</div>
+				<div class="col-lg-2 slider">
+					<label>Range(0 ~ 100): <span class="rgbVal">45</span></label>
+					<input id="range" class="form-control-range" type="range" min="0" max="100" value="45">
+				</div>
+				<div class="col-lg-2" id="submit"><input type="submit" class="btn btn-primary"></div>
+			</div>
+			
+		</form>
+		<div id="image"></div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<script src="js/chroma-key.js"></script>
 	<script src="js/jquery.js"></script>
-	<div id="image"></div>
-	<script>
-		$('form').submit(function(event) {
-			event.preventDefault();
-			var red = $('#red').val();
-			var green = $('#green').val();
-			var blue = $('#blue').val();
-			var range = $('#range').val();
-			$('#image').html("<img src='img/bedroom-2.jpg'>");
-			$('#image img').attr('ckey-r', localStorage.red);
-			$('#image img').attr('ckey-g', localStorage.green);
-			$('#image img').attr('ckey-b', localStorage.blue);
-			$('#image img').attr('data-rr', red);
-			$('#image img').attr('data-rg', green);
-			$('#image img').attr('data-rb', blue);
-			
-			$('#image img').attr('data-delta', '45');
-			$('#image img').attr('alt', 'ckimage');
-			$('#image img').attr('adv', 1);
-			chroma_key.start();
-		})
-	</script>
+	<script src="js/chroma.js"></script>
+	
 </body>
 
 </html>

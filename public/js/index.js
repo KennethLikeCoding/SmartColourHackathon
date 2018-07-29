@@ -47,6 +47,7 @@ var _gaq = _gaq || [];
 		$("#nearest h3").append(nearest);
 		$("#nearest-color").css('background', nearest);
 		foundNearest = true;
+		localStorage.imgSrc = $('img').attr('src');
 	}
 	
 	$("body").on('click', '#nearest h3', function(event) {
@@ -66,3 +67,16 @@ var _gaq = _gaq || [];
 		localStorage.green = $(this).attr('green');
 		localStorage.blue = $(this).attr('blue');
 	});
+	var loadImg = setInterval(imgToCan, 100);
+
+	function imgToCan() {
+		if ($(".target-image") != null) {
+			clearInterval(loadImg);
+			$(".target-image").parent().append("<canvas></canvas>");
+			canvas.attr("width", $(".target-image").width);
+			canvas.attr("height", $(".target-image").height);
+			canvas.className = $(".target-image").className;
+			$(".target-image").html();
+		}
+
+	}
