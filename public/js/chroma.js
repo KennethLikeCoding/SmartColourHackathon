@@ -27,7 +27,7 @@ $('form').submit(function(event) {
     $('#image img').attr('data-rr', red);
     $('#image img').attr('data-rg', green);
     $('#image img').attr('data-rb', blue);
-    $('#image img').attr('data-delta', '45');
+    $('#image img').attr('data-delta', range);
     $('#image img').attr('alt', 'ckimage');
     $('#image img').attr('adv', 1);
     chroma_key.start();
