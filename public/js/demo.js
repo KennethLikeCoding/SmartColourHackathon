@@ -9,9 +9,7 @@ $(document).ready(function () {
   // Color Thief demo code
   // ---------------------
   var imageArray = {images: [
-      {'file': 'examples/img/photo1.jpg'},
-      {'file': 'examples/img/photo2.jpg'},
-      {'file': 'examples/img/photo3.jpg'}
+      
   ]};
 
   // Render example images
@@ -113,6 +111,11 @@ $(document).ready(function () {
 
             var $imageSection = $draggedImages.find('.image-section').first();
             var $image        = $('.dropped-image .target-image');
+            document.getElementById('canvas').style.display = 'block';
+            var img = document.getElementById('im');
+            console.log('the image is:'+img.src);
+            drawImageFromWebUrl(img.src);
+            img.style.display = 'none';
 
             // Must wait for image to load in DOM, not just load from FileReader
             $image.on('load', function() {
@@ -120,6 +123,7 @@ $(document).ready(function () {
             });
           };
         reader.readAsDataURL(file);
+        $('#drop-zone').css('display','none');
       } else {
         alert('File must be a supported image type.');
       }

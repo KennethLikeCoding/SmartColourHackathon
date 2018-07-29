@@ -17,12 +17,21 @@
 
   <section id="drag-drop" class="drag-drop-section">
     <div class="container">
-      <h2>Try it yourself</h2>
+      <h2>Color Extractor</h2>
+      <canvas id="canvas" width="678.667" height="478.667"></canvas>
+      <div style="position: fixed;top: 50%;right: 10%;">
+        <div style="display: flex;">
+          <div id="color" style="width:30px;height:30px;margin-right: 20px"></div>
+          <div id="selectedColour"></div>
+        </div>
+        <a href="./chromkey">Change This Color</a>
+      </div>
+      <div id="dragged-images" class="dragged-images"></div>
+
       <div id="drop-zone" class="drop-zone">
         <div class="drop-zone-label default-label">Drag an image here</div>
         <div class="drop-zone-label dragging-label">Drop it!</div>
       </div>
-      <div id="dragged-images" class="dragged-images"></div>
     </div>
   </section>
   
@@ -35,7 +44,7 @@
           <span class="no-touch-label">Click</span>
           <span class="touch-label">Tap</span>
         </button>
-        <img class="target-image" src="{{file}}" />
+        <img class="target-image" src="{{file}}" id="im" />
       </div>
       <div class="color-thief-output"></div>
     </div>
@@ -74,6 +83,8 @@
   <script src="js/mustache.js"></script>
   <script src="js/demo.js"></script>
   <script src="js/index.js"></script>
+  <script src="js/get_pixel_colour.js" defer ></script>
+  <script src="js/color_tools.js"></script>
 
 </body>
 </html>

@@ -24,10 +24,6 @@ var colors = {
   
 var nearestColor = require('nearest-color').from(colors);
 
-app.get("/colorpicker", function(req, res) {
-    res.render("colorpicker.html");
-})
-
 app.get("/nearestColor/:id", function(req, res) {
     
     var match = nearestColor('#' + req.params.id);
