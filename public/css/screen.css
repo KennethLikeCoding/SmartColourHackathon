@@ -75,24 +75,10 @@ a:hover {
 	text-decoration: underline
 }
 
-::-moz-selection,
-::selection {
-	background: #e67e39;
-	color: #fff
-}
-
-*,
-*:before,
-*:after {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box
-}
-
 body {
 	margin: 0;
 	padding: 0;
-	background: #f3f3f3
+	background: #f3f3f3;
 }
 
 section {
@@ -115,22 +101,6 @@ section:first-of-type {
 	margin: 0 auto;
 	max-width: 40rem;
 	width: 90%
-}
-
-header {
-	padding: 4rem 0 2rem 0;
-	background-color: #fff;
-	text-align: center
-}
-
-header p {
-	text-align: center
-}
-
-@media (min-width: 40rem) {
-	header {
-		padding: 2rem 0
-	}
 }
 
 .image-section {
@@ -218,22 +188,6 @@ header p {
 	transform: scale(0, 0)
 }
 
-.touch .touch-label {
-	display: inline
-}
-
-.touch .no-touch-label {
-	display: none
-}
-
-.no-touch .touch-label {
-	display: none
-}
-
-.no-touch .no-touch-label {
-	display: inline
-}
-
 .target-image {
 	display: block;
 	width: 100%;
@@ -260,7 +214,9 @@ header p {
 }
 
 .function-title {
-	margin-top: 0
+	margin-top: 0;
+	color: black;
+	font-weight: bold;
 }
 
 .function {

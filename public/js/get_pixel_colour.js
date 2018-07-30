@@ -1,7 +1,4 @@
-console.log("start js")
-console.log(document)
 var canvas = document.getElementById("canvas");
-console.log(canvas)
 
 function getElementPosition(obj) {
     var curleft = 0, curtop = 0;
@@ -47,7 +44,7 @@ function drawImageFromWebUrl(sourceurl){
 var hex = ""
 var coord = ""
 
-canvas.addEventListener("mousemove",function(e){
+canvas.addEventListener("click",function(e){
       var eventLocation = getEventLocation(this,e);
     coord = "x=" + eventLocation.x + ", y=" + eventLocation.y;
 
